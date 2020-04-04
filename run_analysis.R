@@ -82,7 +82,7 @@ humanActivityCols <- gsub("std", "StandardDeviation", humanActivityCols)
 
 humanActivityCols <- gsub("BodyBody", "Body", humanActivityCols)
 
-
+#naming columns 
 colnames(humanActivity) <- humanActivityCols
 
 
