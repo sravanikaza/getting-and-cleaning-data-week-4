@@ -1,5 +1,5 @@
 
-
+# load libraries
 library(dplyr)
 
 
@@ -19,14 +19,14 @@ if (!file.exists(dataPath)) {
 }
 
 
-
-trainingSubjects <- read.table(file.path(dataPath, "train", "subject_train.txt"))
-trainingValues <- read.table(file.path(dataPath, "train", "X_train.txt"))
+# train data 
+trainingSub <- read.table(file.path(dataPath, "train", "subject_train.txt"))
+trainingValue <- read.table(file.path(dataPath, "train", "X_train.txt"))
 trainingActivity <- read.table(file.path(dataPath, "train", "y_train.txt"))
 
 
-testSubjects <- read.table(file.path(dataPath, "test", "subject_test.txt"))
-testValues <- read.table(file.path(dataPath, "test", "X_test.txt"))
+testSub <- read.table(file.path(dataPath, "test", "subject_test.txt"))
+testValue <- read.table(file.path(dataPath, "test", "X_test.txt"))
 testActivity <- read.table(file.path(dataPath, "test", "y_test.txt"))
 
 
@@ -38,13 +38,13 @@ colnames(activities) <- c("activityId", "activityLabel")
 
 
 humanActivity <- rbind(
-  cbind(trainingSubjects, trainingValues, trainingActivity),
-  cbind(testSubjects, testValues, testActivity)
+  cbind(trainingSub, trainingValue, trainingActivity),
+  cbind(testSub, testValue, testActivity)
 )
 
 
-rm(trainingSubjects, trainingValues, trainingActivity, 
-   testSubjects, testValues, testActivity)
+rm(trainingSub, trainingValue, trainingActivity, 
+   testSub, testValue, testActivity)
 
 
 colnames(humanActivity) <- c("subject", features[, 2], "activity")
